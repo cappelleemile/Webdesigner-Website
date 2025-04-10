@@ -1,0 +1,431 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #F7F7F7;
+    color: #333333;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 1.3em;
+    letter-spacing: 0.5px;
+}
+
+a {
+    color: #333333;
+    text-decoration: none;
+}
+
+img {
+    /* max-width: 100%; */
+    height: auto;
+    /* display: block; */
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    display: block;
+    zoom: 1.0;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 1rem;
+}
+
+#clearBoth {
+    clear: both;
+}
+
+header {
+    float: left;
+    padding-left: 50px;
+}
+
+header,
+nav {
+    display: flex;
+    align-items: center;
+    padding-bottom: 15px;
+    margin-top: 15px;
+}
+
+.header-nav {
+    margin-top: 30px;
+    background-color: #6A4C9C;
+    border-radius: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em;
+    width: 100%;
+    box-shadow: 0 10px 15px #888888;
+}
+
+/* CSS voor de header-nav met start breedte op 0% en animatie */
+.header-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em;
+    width: 0%;
+    animation: navExpand 1s ease-out forwards;
+}
+
+/* Keyframes die de breedte laten groeien van 0% naar 100% */
+@keyframes navExpand {
+    from {
+        width: 0%;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+
+nav {
+    float: right;
+    padding-right: 50px;
+    perspective: 800px;
+}
+
+/* Basissetting voor de nav-links met 3D extrusion via meerdere text-shadow lagen */
+nav li a.nav-3d-text,
+header a {
+    position: relative;
+    display: inline-block;
+    color: #F7F7F7;
+    /* primaire tekstkleur */
+    transition: transform 0.3s ease, text-shadow 0.3s ease;
+    /* “Extruded” baseline: dit simuleert diepte door meerdere schaduwlagen */
+}
+
+/* Hover-effect met 3D kanteling en extra schaduwlagen voor een versterkt 3D-effect */
+nav li a.nav-3d-text:hover,
+header a:hover {
+    /* De combinatie van perspective en roteren geeft de illusie van ruimte */
+    transform: rotateX(10deg) rotateY(10deg) translateZ(5px);
+    text-shadow:
+        1px 1px 0 #ccc,
+        2px 2px 0 #bbb,
+        3px 3px 0 #aaa,
+        4px 4px 0 #888,
+        5px 5px 0 #777,
+        6px 6px 0 #666;
+}
+
+
+nav ul {
+    list-style-type: none;
+}
+
+nav li {
+    float: left;
+    margin-left: 25px;
+}
+
+nav a,
+header a {
+    color: #F7F7F7;
+}
+
+section {
+    position: relative;
+}
+
+/* Zorgt voor een continue floating-animatie van de sectie #main */
+#main {
+    position: relative;
+    animation: float 4s ease-in-out infinite;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    background-color: transparent;
+    /* Zorgt dat de achtergrond niet wit is */
+    backface-visibility: hidden;
+    /* Voorkomt ongewilde renderingsartefacten */
+    border-radius: 1500px;
+}
+
+/* Keyframes voor het zweefeffect */
+@keyframes float {
+    0% {
+        transform: translateY(0);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    50% {
+        transform: translateY(-15px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    100% {
+        transform: translateY(0);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    }
+}
+
+
+#main img {
+    width: 110%;
+    height: 80%;
+    object-fit: cover;
+    border: 10px solid #333333;
+    border-radius: 1500px;
+    margin-top: 6%;
+    position: relative;
+    display: block;
+    margin-left: -5%;
+}
+
+#mainText {
+    position: absolute;
+    top: 50%;
+    left: 20%;
+    transform: translate(-50%, -45%);
+}
+
+/* Voeg perspective toe aan de container zodat 3D-transformaties realistisch lijken */
+#mainText {
+    perspective: 800px;
+}
+
+/* Basis styling voor de h1 en 3D-instellingen */
+#mainText h1 {
+    display: block;
+    /* Noodzakelijk om de transform te laten werken */
+    transform-style: preserve-3d;
+    /* Zorgt ervoor dat de kinderen in 3D blijven */
+    transition: transform 0.3s ease, text-shadow 0.3s ease;
+}
+
+/* 3D hover-effect: roteren, licht naar voren komen en een extra schaduw voor diepte */
+#mainText h1:hover {
+    transform: translateZ(20px) rotateX(5deg) rotateY(5deg);
+    text-shadow:
+        2px 2px 3px rgba(0, 0, 0, 0.4),
+        4px 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+
+#mainText h1 {
+    font-size: 7vh;
+    margin-bottom: 50px;
+}
+
+/* Voeg perspective toe aan de hoofdsectie zodat de 3D-transformaties realistisch lijken */
+#main {
+    perspective: 800px;
+}
+
+/* Zorg dat de knop als inline-block wordt getoond (nodig voor transformaties) en voeg extra transition toe */
+#main a {
+    display: inline-block;
+    background-color: #6A4C9C;
+    color: #F7F7F7;
+    border: 5px solid #6A4C9C;
+    font-size: 3vh;
+    border-radius: 150px;
+    padding: 2vh 4vh;
+    transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease, border 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover-effect: de knop kantelt in 3D richting en krijgt een extra schaduw */
+#main a:hover {
+    transform: rotateX(10deg) rotateY(10deg) translateZ(10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+
+    /* Als je ook de kleur om wilt draaien, behoud dan je oorspronkelijke hover-regels
+       Dit kun je combineren, bijvoorbeeld: 
+    background-color: #F7F7F7;
+    color: #6A4C9C;
+    border: 5px solid #6A4C9C;
+    */
+}
+
+
+#main a {
+    background-color: #6A4C9C;
+    color: #F7F7F7;
+    border: 5px solid #6A4C9C;
+    font-size: 3vh;
+    border-radius: 150px;
+    padding: 2vh 4vh;
+    transition: .3s;
+}
+
+#main a:hover {
+    background-color: #F7F7F7;
+    color: #6A4C9C;
+    border: 5px solid #6A4C9C;
+}
+
+#about {
+    width: 80%;
+    margin: 150px auto;
+}
+
+#about h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+#about p {
+    font-size: 1.2em;
+}
+
+#about h1,
+#contact h1 {
+    position: relative;
+    display: inline-block;
+    color: #333333;
+    /* primaire tekstkleur */
+    transition: transform 0.3s ease, text-shadow 0.3s ease;
+    /* “Extruded” baseline: dit simuleert diepte door meerdere schaduwlagen */
+}
+
+/* Hover-effect met 3D kanteling en extra schaduwlagen voor een versterkt 3D-effect */
+#about h1:hover,
+#contact h1:hover {
+    /* De combinatie van perspective en roteren geeft de illusie van ruimte */
+    transform: rotateX(10deg) rotateY(10deg) translateZ(5px);
+    text-shadow:
+        1px 1px 0 #ccc,
+        2px 2px 0 #bbb,
+        3px 3px 0 #aaa,
+        4px 4px 0 #888,
+        5px 5px 0 #777,
+        6px 6px 0 #666;
+}
+
+#projects {
+    width: 80%;
+    margin: 150px auto;
+}
+
+/* Geef de container van de projectafbeeldingen een perspective */
+.projectTiles {
+    perspective: 800px;
+}
+
+/* Basisinstelling voor de projectafbeeldingen */
+#projects img {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* 3D hover-effect voor de afbeeldingen */
+#projects img:hover {
+    transform: rotateX(10deg) rotateY(10deg) translateZ(20px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+
+#projects h1 {
+    font-size: 3em;
+    margin-bottom: 50px;
+    text-align: right;
+}
+
+#projects h1 {
+    position: relative;
+    display: block;
+    color: #333333;
+    /* primaire tekstkleur */
+    transition: transform 0.3s ease, text-shadow 0.3s ease;
+    /* “Extruded” baseline: dit simuleert diepte door meerdere schaduwlagen */
+}
+
+/* Hover-effect met 3D kanteling en extra schaduwlagen voor een versterkt 3D-effect */
+#projects h1:hover {
+    /* De combinatie van perspective en roteren geeft de illusie van ruimte */
+    transform: rotateX(10deg) rotateY(10deg) translateZ(5px);
+    text-shadow:
+        1px 1px 0 #ccc,
+        2px 2px 0 #bbb,
+        3px 3px 0 #aaa,
+        4px 4px 0 #888,
+        5px 5px 0 #777,
+        6px 6px 0 #666;
+}
+
+#projects p {
+    font-size: 1.2em;
+}
+
+.projectTiles {
+    text-align: right;
+}
+
+#projects img {
+    height: 30%;
+    max-width: 30%;
+    margin-left: 5%;
+    border: 5px solid #6A4C9C;
+    border-radius: 100px;
+    object-fit: cover;
+}
+
+#contact {
+    width: 80%;
+    margin: 150px auto;
+}
+
+#contact h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+#contact p {
+    font-size: 1.2em;
+}
+
+footer {
+    border-top: 3px solid #6A4C9C;
+    margin-bottom: 50px;
+    width: 120%;
+    margin-left: -10%;
+}
+
+footer p {
+    width: 80%;
+    margin: auto;
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    header,
+    nav {
+        margin-top: 2%;
+    }
+
+    #mainText {
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .header-nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul {
+        flex-direction: column;
+        padding: 0;
+    }
+}
